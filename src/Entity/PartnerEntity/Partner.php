@@ -68,6 +68,4 @@ class Partner
     {
         $this->address = $address;
     }
-
-
 }

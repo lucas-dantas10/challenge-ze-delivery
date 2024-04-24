@@ -3,14 +3,14 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
 
     <entity name="App\Entity\PartnerEntity\Partner" table="s_partner">
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer" column="nu_seq_id">
             <generator strategy="AUTO"/>
         </id>
-        <field name="tradingName" column="tradingName" />
-        <field name="ownerName" column="ownerName" />
-        <field name="document" column="document" />
-        <field name="coverageArea" column="coverageArea" type="multipolygon" />
-        <field name="address" column="address" type="point" />
+        <field name="tradingName" column="des_trading_name" />
+        <field name="ownerName" column="des_owner_name" />
+        <field name="document" column="des_document" />
+        <field name="coverageArea" column="geo_coverage_area" type="multipolygon" />
+        <field name="address" column="geo_address" type="point" />
     </entity>
 
 </doctrine-mapping>
