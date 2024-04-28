@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity\PartnerEntity;
+namespace App\Domain\Entity\PartnerEntity;
 
-use CrEOF\Spatial\PHP\Types\Geometry\Point;
 use CrEOF\Spatial\PHP\Types\Geometry\MultiPolygon;
+use CrEOF\Spatial\PHP\Types\Geometry\Point;
 
 class Partner
 {
