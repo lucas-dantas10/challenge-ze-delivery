@@ -25,6 +25,13 @@ doctrine:
                 dir: '%kernel.project_dir%/config/infrastructure/persistence/doctrine'
                 prefix: 'App\Entity'
                 alias: App
+        dql:
+            numeric_functions:
+                st_area: CrEOF\Spatial\ORM\Query\AST\Functions\Standard\StArea
+            string_functions:
+                st_envelope: CrEOF\Spatial\ORM\Query\AST\Functions\Standard\STEnvelope
+                sp_asgeojson: CrEOF\Spatial\ORM\Query\AST\Functions\Postgresql\SpAsGeoJson
+                myDQLFunctionAlias: CrEOF\Spatial\ORM\Query\AST\Functions\Standard\StCentroid
 
 when@test:
     doctrine:

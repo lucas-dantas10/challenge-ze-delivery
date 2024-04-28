@@ -9,6 +9,9 @@
         <field name="tradingName" column="des_trading_name" />
         <field name="ownerName" column="des_owner_name" />
         <field name="document" column="des_document" />
+        <unique-constraints>
+            <unique-constraint columns="des_document" name="document_key" />
+        </unique-constraints>
         <field name="coverageArea" column="geo_coverage_area" type="multipolygon" />
         <field name="address" column="geo_address" type="point" />
     </entity>

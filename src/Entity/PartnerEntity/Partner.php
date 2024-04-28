@@ -11,8 +11,8 @@ class Partner
     private string $tradingName;
     private string $ownerName;
     private string $document;
-    private $coverageArea;
-    private $address;
+    private MultiPolygon $coverageArea;
+    private Point $address;
 
     public function getId(): int
     {
@@ -49,7 +49,7 @@ class Partner
         $this->document = $document;
     }
 
-    public function getCoverageArea(): \GEOSGeometry
+    public function getCoverageArea(): MultiPolygon
     {
         return $this->coverageArea;
     }
@@ -59,7 +59,7 @@ class Partner
         $this->coverageArea = $coverageArea;
     }
 
-    public function getAddress()
+    public function getAddress(): Point
     {
         return $this->address;
     }
