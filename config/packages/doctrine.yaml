@@ -22,7 +22,7 @@ doctrine:
             App:
                 type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/config/infrastructure/persistence/doctrine'
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping'
                 prefix: 'App\Domain\Entity'
                 alias: App
         dql:
