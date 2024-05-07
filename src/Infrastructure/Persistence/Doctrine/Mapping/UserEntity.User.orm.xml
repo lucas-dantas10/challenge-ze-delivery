@@ -1,0 +1,18 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <entity name="App\Domain\Entity\UserEntity\User" table="s_user">
+        <id name="id" type="integer" column="nu_seq_id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="name" column="des_name" />
+        <field name="email" column="des_email" />
+        <field name="password" column="des_password" />
+        <unique-constraints>
+            <unique-constraint columns="des_email" name="email_key" />
+        </unique-constraints>
+        <field name="address" column="geo_address" type="point" />
+    </entity>
+
+</doctrine-mapping>
