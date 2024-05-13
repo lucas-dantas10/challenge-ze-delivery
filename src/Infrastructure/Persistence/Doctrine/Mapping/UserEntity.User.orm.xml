@@ -2,7 +2,7 @@
                   xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
 
-    <entity name="App\Domain\Entity\UserEntity\User" table="s_user">
+    <entity name="App\Domain\Entity\UserEntity\User" table="s_user"  schema="users">
         <id name="id" type="integer" column="nu_seq_id">
             <generator strategy="AUTO"/>
         </id>

@@ -3,8 +3,9 @@
 namespace App\Domain\Entity\UserEntity;
 
 use CrEOF\Spatial\PHP\Types\Geometry\Point;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-class User
+class User implements PasswordAuthenticatedUserInterface
 {
     private int $id;
     private string $name;
@@ -22,9 +23,10 @@ class User
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(string $name): User
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getEmail(): string
@@ -32,9 +34,10 @@ class User
         return $this->email;
     }
 
-    public function setEmail(string $email): void
+    public function setEmail(string $email): User
     {
         $this->email = $email;
+        return $this;
     }
 
     public function getPassword(): string
@@ -42,9 +45,10 @@ class User
         return $this->password;
     }
 
-    public function setPassword(string $password): void
+    public function setPassword(string $password): User
     {
         $this->password = $password;
+        return $this;
     }
 
     public function getAddress(): Point
@@ -52,8 +56,9 @@ class User
         return $this->address;
     }
 
-    public function setAddress(Point $address): void
+    public function setAddress(Point $address): self
     {
         $this->address = $address;
+        return $this;
     }
 }

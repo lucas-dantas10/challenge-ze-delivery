@@ -13,6 +13,12 @@ class PartnerService implements PartnerServiceInterface
     )
     { }
 
+    public function findPartnerById(int $id)
+    {
+        // logica de negocio
+        return $this->partnerRepository->findPartnerByTest($id);
+    }
+
     public function createPartner(): ?Partner
     {
         // TODO: Implement createPartner() method.
