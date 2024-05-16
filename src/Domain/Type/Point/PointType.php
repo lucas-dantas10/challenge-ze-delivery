@@ -22,9 +22,7 @@ class PointType extends Type
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        [$longitude, $latitude] = sscanf($value, 'POINT(%f %f)');
-
-        return new PointVO($longitude, $latitude);
+        return new PointVO(json_decode($value));
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -34,7 +32,7 @@ class PointType extends Type
 
     public function convertToPHPValueSQL($sqlExpr, $platform)
     {
-        return sprintf('ST_AsText(%s)', $sqlExpr);
+        return sprintf('ST_AsGeoJson(%s)', $sqlExpr);
     }
 
     public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform)
