@@ -2,7 +2,7 @@ doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
         types:
-            point: CrEOF\Spatial\DBAL\Types\Geometry\PointType
+            point: App\Domain\Type\Point\PointType
             multipolygon: CrEOF\Spatial\DBAL\Types\Geometry\MultiPolygonType
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true

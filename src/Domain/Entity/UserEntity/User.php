@@ -2,10 +2,12 @@
 
 namespace App\Domain\Entity\UserEntity;
 
-use CrEOF\Spatial\PHP\Types\Geometry\Point;
+//use CrEOF\Spatial\PHP\Types\Geometry\Point;
+use App\Domain\ValueObject\Point\PointVO as Point;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     private int $id;
     private string $name;
@@ -60,5 +62,20 @@ class User implements PasswordAuthenticatedUserInterface
     {
         $this->address = $address;
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        return [];
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 }
