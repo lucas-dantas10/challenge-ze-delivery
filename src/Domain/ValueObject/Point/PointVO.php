@@ -5,18 +5,12 @@ namespace App\Domain\ValueObject\Point;
 class PointVO
 {
     public function __construct(
-        private float $latitude,
-        private float $longitude,
+        private readonly object $pointData,
     ) {
     }
 
-    public function getLatitude(): float
+    public function getPointData(): object
     {
-        return $this->latitude;
-    }
-
-    public function getLongitude(): float
-    {
-        return $this->longitude;
+        return $this->pointData;
     }
 }
