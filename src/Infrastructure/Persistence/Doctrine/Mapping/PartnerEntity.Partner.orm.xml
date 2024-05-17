@@ -14,6 +14,8 @@
         </unique-constraints>
         <field name="coverageArea" column="mp_coverage_area" type="multipolygon" />
         <field name="address" column="pt_address" type="point" />
+        <field name="createdAt" column="dt_created_at" type="datetime"/>
+        <field name="updatedAt" column="dt_updated_at" type="datetime"/>
     </entity>
 
 </doctrine-mapping>

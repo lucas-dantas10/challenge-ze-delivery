@@ -11,6 +11,11 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 #[Route(path: '/api/v1/login', name: 'login_user', methods: ['POST'])]
 class LoginUserPostAction
 {
+    public function __construct(
+        private readonly
+    )
+    { }
+
     public function __invoke(#[CurrentUser] ?User $user): JsonResponse
     {
         if (is_null($user)) {
@@ -21,6 +26,7 @@ class LoginUserPostAction
 
         return new JsonResponse([
             'message' => 'user logged',
+            'data' => $user,
             'status' => 200
         ], Response::HTTP_CREATED);
     }

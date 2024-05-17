@@ -13,6 +13,8 @@ class Partner
     private string $document;
     private MultiPolygon $coverageArea;
     private Point $address;
+    private \DateTime $createdAt;
+    private ?\DateTime $updatedAt;
 
     public function getId(): int
     {

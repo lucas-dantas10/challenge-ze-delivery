@@ -3,7 +3,9 @@
 namespace App\Domain\Entity\UserEntity;
 
 //use CrEOF\Spatial\PHP\Types\Geometry\Point;
+use App\Domain\Entity\AccessTokenEntity\AccessToken;
 use App\Domain\ValueObject\Point\PointVO as Point;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -14,6 +16,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $email;
     private string $password;
     private Point $address;
+    private ?Collection $accessTokens;
+    private \DateTime $createdAt;
+    private ?\DateTime $updatedAt;
 
     public function getId(): int
     {
@@ -61,6 +66,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAddress(Point $address): self
     {
         $this->address = $address;
+        return $this;
+    }
+
+    public function getAccessTokens(): AccessToken
+    {
+        return $this->accessTokens;
+    }
+
+    public function setAccessTokens(AccessToken $accessTokens): self
+    {
+        $this->accessTokens = $accessTokens;
         return $this;
     }
 
