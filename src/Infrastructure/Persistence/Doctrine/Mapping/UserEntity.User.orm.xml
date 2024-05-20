@@ -12,7 +12,7 @@
         <unique-constraints>
             <unique-constraint columns="des_email" name="email_key" />
         </unique-constraints>
-        <field name="address" column="pt_address" type="point" />
+        <field name="address" column="pt_address" type="pointGeometry" />
         <one-to-many field="accessTokens" target-entity="App\Domain\Entity\AccessTokenEntity\AccessToken" mapped-by="user"/>
         <field name="createdAt" column="dt_created_at" type="datetime"/>
         <field name="updatedAt" column="dt_updated_at" type="datetime"/>
