@@ -6,29 +6,38 @@ use App\Domain\Entity\AccessTokenEntity\AccessToken;
 use App\Domain\Entity\UserEntity\User;
 use App\Domain\Repository\AccessToken\AccessTokenRepositoryInterface;
 use App\Domain\Service\AccessToken\AccessTokenServiceInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class AccessTokenService implements AccessTokenServiceInterface
 {
     public function __construct(
         private readonly AccessTokenRepositoryInterface $accessTokenRepository,
+        private readonly EntityManagerInterface $entityManager
     )
     { }
 
     public function generateToken(User $user): string
     {
-        if ($this->hasTokenForUse($user)) {
-            $tokensExistent = $this->findTokenByUser($user);
+        try {
+            $this->entityManager->beginTransaction();
 
-            $activeToken = $this->getTokenActive($tokensExistent);
+            if ($this->hasTokenForUse($user)) {
+                $tokensExistent = $this->findTokenByUser($user);
 
-            return $activeToken;
+                $activeToken = $this->getTokenActive($tokensExistent);
+
+                return $activeToken;
+            }
+
+            $tokenMounted = hash('sha512', random_bytes(32));
+
+            $this->accessTokenRepository->createTokenForUser($user, $tokenMounted);
+
+            return $tokenMounted;
+        } catch (\Exception $e) {
+            $this->entityManager->rollback();
+            throw new \Exception($e->getMessage());
         }
-
-        $tokenMounted = hash('sha512', random_bytes(32));
-
-        $this->accessTokenRepository->createTokenForUser($user, $tokenMounted);
-
-        return $tokenMounted;
     }
 
     public function findTokenByUser(User $user): array
