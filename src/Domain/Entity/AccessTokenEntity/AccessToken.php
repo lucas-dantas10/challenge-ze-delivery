@@ -51,31 +51,31 @@ class AccessToken
 
     public function getExpiresAt(): \DateTime
     {
-        return $this->expires_at;
+        return $this->expiresAt;
     }
 
     public function setExpiresAt(\DateTime $expires_at): void
     {
-        $this->expires_at = $expires_at;
+        $this->expiresAt = $expires_at;
     }
 
     public function getCreatedAt(): \DateTime
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
     public function setCreatedAt(\DateTime $created_at): void
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $created_at;
     }
 
     public function getUpdatedAt(): \DateTime
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
     public function setUpdatedAt(\DateTime $updated_at): void
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updated_at;
     }
 }
