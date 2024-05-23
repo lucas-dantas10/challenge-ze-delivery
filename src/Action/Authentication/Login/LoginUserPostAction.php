@@ -10,10 +10,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 #[Route(path: '/api/v1/login', name: 'login_user', methods: ['POST'])]
-class LoginUserPostAction
+readonly class LoginUserPostAction
 {
     public function __construct(
-        private readonly LoginServiceInterface $loginService,
+        private LoginServiceInterface $loginService,
     )
     { }
 
