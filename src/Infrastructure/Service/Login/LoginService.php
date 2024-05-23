@@ -4,6 +4,7 @@ namespace App\Infrastructure\Service\Login;
 
 use App\Domain\Dto\User\UserDTO;
 use App\Domain\Entity\UserEntity\User;
+use App\Domain\Service\AccessToken\AccessTokenServiceInterface;
 use App\Domain\Service\Login\LoginServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,7 @@ class LoginService implements LoginServiceInterface
 {
     public function __construct(
         private readonly SerializerInterface $serializer,
+        private readonly AccessTokenServiceInterface $accessTokenService,
     )
     { }
 
@@ -27,12 +29,14 @@ class LoginService implements LoginServiceInterface
 
         $userDto = new UserDTO($user->getName(), $user->getEmail(), $user->getAddress());
 
+        $token = $this->accessTokenService->generateToken($user);
+
         $user = $this->serializer->serialize($userDto, 'json');
 
         return new JsonResponse([
             'message' => 'user logged',
             'user' => json_decode($user, true),
-            'token' => '',
+            'token' => $token,
             'status' => 200
         ], Response::HTTP_CREATED);
     }
