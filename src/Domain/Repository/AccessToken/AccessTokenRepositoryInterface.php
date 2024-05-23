@@ -8,4 +8,5 @@ use App\Domain\Entity\UserEntity\User;
 interface AccessTokenRepositoryInterface
 {
     public function createTokenForUser(User $user, string $token): AccessToken;
+    public function findTokenByUser(User $user): ?array;
 }

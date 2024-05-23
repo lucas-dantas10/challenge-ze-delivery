@@ -35,4 +35,9 @@ class AccessTokenRepository extends ServiceEntityRepository implements AccessTok
 
         return $this->accessToken;
     }
+
+    public function findTokenByUser(User $user): ?array
+    {
+        return $this->findBy(['user' => $user->getId()]);
+    }
 }
