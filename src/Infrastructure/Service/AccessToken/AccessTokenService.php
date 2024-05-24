@@ -8,12 +8,12 @@ use App\Domain\Service\AccessToken\AccessTokenServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
-class AccessTokenService implements AccessTokenServiceInterface
+readonly class AccessTokenService implements AccessTokenServiceInterface
 {
     public function __construct(
-        private readonly AccessTokenRepositoryInterface $accessTokenRepository,
-        private readonly EntityManagerInterface $entityManager,
-        private readonly Security $security,
+        private AccessTokenRepositoryInterface $accessTokenRepository,
+        private EntityManagerInterface         $entityManager,
+        private Security                       $security,
     )
     { }
 
@@ -23,11 +23,7 @@ class AccessTokenService implements AccessTokenServiceInterface
             $this->entityManager->beginTransaction();
 
             if ($this->hasTokenForUse($user)) {
-                $tokensExistent = $this->findTokenByUser($user);
-
-                $activeToken = $this->getTokenActive($tokensExistent);
-
-                return $activeToken;
+                return  $this->findTokenByUser($user);
             }
 
             $tokenMounted = hash('sha512', random_bytes(32));
