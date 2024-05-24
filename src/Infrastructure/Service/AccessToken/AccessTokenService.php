@@ -2,17 +2,18 @@
 
 namespace App\Infrastructure\Service\AccessToken;
 
-use App\Domain\Entity\AccessTokenEntity\AccessToken;
 use App\Domain\Entity\UserEntity\User;
 use App\Domain\Repository\AccessToken\AccessTokenRepositoryInterface;
 use App\Domain\Service\AccessToken\AccessTokenServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class AccessTokenService implements AccessTokenServiceInterface
 {
     public function __construct(
         private readonly AccessTokenRepositoryInterface $accessTokenRepository,
-        private readonly EntityManagerInterface $entityManager
+        private readonly EntityManagerInterface $entityManager,
+        private readonly Security $security,
     )
     { }
 
@@ -42,22 +43,31 @@ class AccessTokenService implements AccessTokenServiceInterface
         }
     }
 
-    public function findTokenByUser(User $user): array
+    public function findTokenByUser(User $user): ?string
     {
-        return $this->accessTokenRepository->findTokenByUser($user);
+        $tokens = $this->accessTokenRepository->findTokenByUser($user);
+
+        return $this->getTokenActive($tokens);
     }
 
     public function verifyToken(string $token): bool
     {
-        // TODO: verify if token is valid
-        return false;
+        $activeToken = $this->findTokenByUser($this->security->getUser());
+
+        if (
+            $activeToken != $token
+            || empty($activeToken)
+            || empty($token)
+        ) {
+            return false;
+        }
+
+        return true;
     }
 
     private function hasTokenForUse(User $user): bool
     {
-        $tokens = $this->findTokenByUser($user);
-
-        $token = $this->getTokenActive($tokens);
+        $token = $this->findTokenByUser($user);
 
         if (empty($token)) {
             return false;
