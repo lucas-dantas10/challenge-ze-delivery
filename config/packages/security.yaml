@@ -17,6 +17,7 @@ security:
             provider: app_user_provider
             json_login:
                 check_path: login_user
+            custom_authenticator: App\Infrastructure\Security\Token\TokenAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
