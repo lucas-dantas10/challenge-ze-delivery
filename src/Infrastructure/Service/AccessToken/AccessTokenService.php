@@ -33,6 +33,8 @@ class AccessTokenService implements AccessTokenServiceInterface
 
             $this->accessTokenRepository->createTokenForUser($user, $tokenMounted);
 
+            $this->entityManager->commit();
+
             return $tokenMounted;
         } catch (\Exception $e) {
             $this->entityManager->rollback();
