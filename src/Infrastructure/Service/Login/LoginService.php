@@ -20,7 +20,7 @@ class LoginService implements LoginServiceInterface
 
     public function login(?User $user): JsonResponse
     {
-        if (is_null($user)) {
+        if (empty($user)) {
             return new JsonResponse([
                 'message' => 'missing credentials',
                 'status' => 401,
