@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class AccessTokenRepository extends ServiceEntityRepository implements AccessTokenRepositoryInterface
 {
     private readonly AccessToken $accessToken;
+    
     public function __construct(ManagerRegistry $registry)
     {
         $this->accessToken = new AccessToken();
