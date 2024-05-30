@@ -44,7 +44,7 @@ class TokenAuthenticator extends AbstractAuthenticator
         return new SelfValidatingPassport(new UserBadge($user->getEmail()));
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?JsonResponse
     {
         return null;
     }
@@ -53,6 +53,7 @@ class TokenAuthenticator extends AbstractAuthenticator
     {
         $data = [
             'message' => 'Authentication failed',
+            'status' => 401
         ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
