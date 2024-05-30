@@ -46,7 +46,7 @@ readonly class AccessTokenService implements AccessTokenServiceInterface
         return $this->getTokenActive($tokens);
     }
 
-    public function verifyToken(string $token): bool
+    public function verifyToken(?string $token): bool
     {
         $activeToken = $this->findTokenByUser($this->security->getUser());
 

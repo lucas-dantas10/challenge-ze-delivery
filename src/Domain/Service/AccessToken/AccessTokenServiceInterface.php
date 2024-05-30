@@ -8,5 +8,5 @@ interface AccessTokenServiceInterface
 {
     public function findTokenByUser(User $user): ?string;
     public function generateToken(User $user): string;
-    public function verifyToken(string $token): bool;
+    public function verifyToken(?string $token): bool;
 }
