@@ -6,8 +6,7 @@ class PointVO
 {
     public function __construct(
         private readonly object $pointData,
-    ) {
-    }
+    ) { }
 
     public function getPointData(): object
     {
