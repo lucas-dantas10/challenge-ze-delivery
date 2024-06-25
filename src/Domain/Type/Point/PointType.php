@@ -2,7 +2,7 @@
 
 namespace App\Domain\Type\Point;
 
-use App\Domain\ValueObject\Point\PointVO;
+use App\Domain\ValueObject\Point\PointVO as Point;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
@@ -22,17 +22,23 @@ class PointType extends Type
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new PointVO(json_decode($value));
+        list($longitude, $latitude) = sscanf($value, 'POINT(%f %f)');
+
+        return new Point($latitude, $longitude);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if ($value instanceof Point) {
+            $value = sprintf('POINT(%F %F)', $value->getLongitude(), $value->getLatitude());
+        }
+
         return $value;
     }
 
     public function convertToPHPValueSQL($sqlExpr, $platform)
     {
-        return sprintf('ST_AsGeoJson(%s)', $sqlExpr);
+        return sprintf('st_astext(%s)', $sqlExpr);
     }
 
     public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform)

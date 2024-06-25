@@ -5,11 +5,22 @@ namespace App\Domain\ValueObject\Point;
 class PointVO
 {
     public function __construct(
-        private readonly object $pointData,
+        private readonly float $latitude,
+        private readonly float $longitude,
     ) { }
 
-    public function getPointData(): object
+    public function getLatitude(): float
     {
-        return $this->pointData;
+        return $this->latitude;
+    }
+
+    public function getLongitude(): float
+    {
+        return $this->longitude;
+    }
+
+    public function toPointData(): string
+    {
+        return sprintf('POINT(%f %f)', $this->longitude, $this->latitude);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Action\Partner;
 use App\Domain\Dto\Partner\CreatePartnerDTO;
 use App\Domain\Service\Partner\PartnerServiceInterface;
 use App\Domain\Exception\Partner\PartnerNotCreatedInterface;
+use App\Domain\ValueObject\Point\PointVO;
 use App\Infrastructure\Exception\Partner\PartnerNotCreated;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class PartnerCreatePostAction
 {
     public function __construct(
         private readonly PartnerServiceInterface $partnerService,
-        private readonly SerializerInterface $serializer
+        private readonly SerializerInterface $serializer,
     )
     { }
 

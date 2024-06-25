@@ -2,6 +2,7 @@
 
 namespace App\Domain\Dto\Partner;
 
+use App\Domain\ValueObject\Point\PointVO;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
@@ -25,7 +26,7 @@ class CreatePartnerDTO
         public readonly array $coverageArea,
 
         #[NotBlank(message: 'This field address is required')]
-        #[Type('array')]
-        public readonly array $address,
+        #[Type(PointVO::class)]
+        public readonly PointVO $address,
     ) { }
 }
