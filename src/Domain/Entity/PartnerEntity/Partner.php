@@ -2,8 +2,8 @@
 
 namespace App\Domain\Entity\PartnerEntity;
 
+use App\Domain\ValueObject\Point\PointVO as Point;
 use CrEOF\Spatial\PHP\Types\Geometry\MultiPolygon;
-use CrEOF\Spatial\PHP\Types\Geometry\Point;
 
 class Partner
 {
