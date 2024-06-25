@@ -38,7 +38,6 @@ class PartnerCreatePostAction
                 'status' => Response::HTTP_BAD_REQUEST
             ], Response::HTTP_BAD_REQUEST);
         } catch (\Throwable $err) {
-            dd($err);
             return new JsonResponse([
                 'message' => 'Ocorreu um erro!',
                 'status' => Response::HTTP_BAD_REQUEST

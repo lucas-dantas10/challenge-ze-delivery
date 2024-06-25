@@ -2,11 +2,11 @@
 
 namespace App\Domain\ValueObject\Point;
 
-class PointVO
+final readonly class PointVO
 {
     public function __construct(
-        private readonly float $latitude,
-        private readonly float $longitude,
+        private float $latitude,
+        private float $longitude,
     ) { }
 
     public function getLatitude(): float
@@ -22,5 +22,26 @@ class PointVO
     public function toPointData(): string
     {
         return sprintf('POINT(%f %f)', $this->longitude, $this->latitude);
+    }
+
+    public function toArray(): array
+    {
+        return [
+            $this->latitude,
+            $this->longitude
+        ];
+    }
+
+    public function toJson(): string
+    {
+        $point = [
+            'type' => 'Point',
+            'coordinates' => [
+                $this->latitude,
+                $this->longitude
+            ],
+        ];
+
+        return json_encode($point);
     }
 }

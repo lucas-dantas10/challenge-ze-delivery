@@ -22,8 +22,6 @@ class PartnerService implements PartnerServiceInterface
 
     public function createPartner(CreatePartnerDTO $partner): ?Partner
     {
-        $partner = $this->partnerRepository->createPartner($partner);
-
-        return $partner;
+        return $this->partnerRepository->createPartner($partner);
     }
 }
