@@ -31,7 +31,14 @@ class PartnerCreatePostAction
                 throw new PartnerNotCreated();
             }
 
-            return new JsonResponse($this->serializer->serialize($partner, 'json'));
+            $partner = $this->serializer->serialize($partner, 'json');
+
+            $partnerArray = json_decode($partner, true);
+
+            $partnerArray['coveragearea'] = json_decode($partnerArray['coveragearea'], true);
+            $partnerArray['address'] = json_decode($partnerArray['address'], true);
+
+            return new JsonResponse($partnerArray);
         } catch (PartnerNotCreatedInterface $err) {
             return new JsonResponse([
                 'message' => PartnerNotCreated::getMessageError(),

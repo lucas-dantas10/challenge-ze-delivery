@@ -28,7 +28,6 @@ doctrine:
                 st_envelope: CrEOF\Spatial\ORM\Query\AST\Functions\Standard\STEnvelope
                 st_astext: CrEOF\Spatial\ORM\Query\AST\Functions\Standard\STAsText
                 sp_asgeojson: CrEOF\Spatial\ORM\Query\AST\Functions\Postgresql\SpAsGeoJson
-                myDQLFunctionAlias: CrEOF\Spatial\ORM\Query\AST\Functions\Standard\StCentroid
 
 when@test:
     doctrine:

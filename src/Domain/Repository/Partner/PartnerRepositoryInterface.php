@@ -7,6 +7,6 @@ use App\Domain\Entity\PartnerEntity\Partner;
 
 interface PartnerRepositoryInterface
 {
-    public function findPartnerById(int $id): ?Partner;
-    public function createPartner(CreatePartnerDTO $partner): ?Partner;
+    public function findPartnerById(int $id): ?array;
+    public function createPartner(CreatePartnerDTO $partner): ?array;
 }

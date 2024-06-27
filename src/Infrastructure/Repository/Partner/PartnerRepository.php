@@ -14,20 +14,41 @@ use Doctrine\Persistence\ManagerRegistry;
 class PartnerRepository extends ServiceEntityRepository implements PartnerRepositoryInterface
 {
     public function __construct(
-        ManagerRegistry $registry,
+        ManagerRegistry                         $registry,
         private readonly EntityManagerInterface $entityManager
-    ) {
+    )
+    {
         parent::__construct($registry, Partner::class);
     }
 
-    public function findPartnerById(int $id): ?Partner
+    public function findPartnerById(int $id): ?array
     {
-        // TODO: Implement findPartnerById() method.
-        return null;
+        $connection = $this->entityManager->getConnection();
+
+        $query = <<<QUERY
+            SELECT 
+                nu_seq_id AS id,
+                des_trading_name AS tradingName,
+                des_owner_name AS ownerName,
+                des_document AS document,
+                st_asgeojson(mp_coverage_area) AS coverageArea,
+                st_asgeojson(pt_address) AS address,
+                dt_created_at AS createdAt,
+                dt_updated_at AS updatedAt
+            FROM partners.s_partner
+            WHERE nu_seq_id = :partnerId;
+        QUERY;
+
+        $statement = $connection->prepare($query);
+        $statement->bindValue('partnerId', $id);
+
+        $result = $statement->executeQuery()->fetchAssociative();
+
+        return $result ?? null;
     }
 
 
-    public function createPartner(CreatePartnerDTO $partner): ?Partner
+    public function createPartner(CreatePartnerDTO $partner): ?array
     {
         $connection = $this->entityManager->getConnection();
         $connection->beginTransaction();

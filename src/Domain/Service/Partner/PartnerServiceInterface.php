@@ -8,5 +8,5 @@ use App\Domain\Repository\Partner\PartnerRepositoryInterface;
 
 interface PartnerServiceInterface
 {
-    public function createPartner(CreatePartnerDTO $partner): ?Partner;
+    public function createPartner(CreatePartnerDTO $partner): ?array;
 }

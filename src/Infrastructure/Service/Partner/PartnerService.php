@@ -20,7 +20,7 @@ class PartnerService implements PartnerServiceInterface
         return $this->partnerRepository->findPartnerByTest($id);
     }
 
-    public function createPartner(CreatePartnerDTO $partner): ?Partner
+    public function createPartner(CreatePartnerDTO $partner): ?array
     {
         return $this->partnerRepository->createPartner($partner);
     }
