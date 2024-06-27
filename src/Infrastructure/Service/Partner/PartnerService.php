@@ -11,13 +11,11 @@ class PartnerService implements PartnerServiceInterface
 {
     public function __construct(
         private PartnerRepositoryInterface $partnerRepository
-    )
-    { }
+    ) { }
 
-    public function findPartnerById(int $id)
+    public function findPartnerById(int $id): ?array
     {
-        // logica de negocio
-        return $this->partnerRepository->findPartnerByTest($id);
+        return $this->partnerRepository->findPartnerById($id);
     }
 
     public function createPartner(CreatePartnerDTO $partner): ?array

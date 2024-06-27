@@ -38,7 +38,7 @@ class PartnerCreatePostAction
             $partnerArray['coveragearea'] = json_decode($partnerArray['coveragearea'], true);
             $partnerArray['address'] = json_decode($partnerArray['address'], true);
 
-            return new JsonResponse($partnerArray);
+            return new JsonResponse($partnerArray, Response::HTTP_OK);
         } catch (PartnerNotCreatedInterface $err) {
             return new JsonResponse([
                 'message' => PartnerNotCreated::getMessageError(),
