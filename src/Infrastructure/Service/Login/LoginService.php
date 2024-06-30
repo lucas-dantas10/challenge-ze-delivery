@@ -38,6 +38,6 @@ class LoginService implements LoginServiceInterface
             'user' => json_decode($user, true),
             'token' => $token,
             'status' => 200
-        ], Response::HTTP_CREATED);
+        ], Response::HTTP_OK);
     }
 }
