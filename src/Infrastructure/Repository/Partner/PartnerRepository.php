@@ -43,7 +43,7 @@ class PartnerRepository extends ServiceEntityRepository implements PartnerReposi
 
         $result = $statement->executeQuery()->fetchAssociative();
 
-        return $result ?? null;
+        return $result ?: null;
     }
 
 
