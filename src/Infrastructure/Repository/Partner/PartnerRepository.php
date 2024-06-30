@@ -5,7 +5,6 @@ namespace App\Infrastructure\Repository\Partner;
 use App\Domain\Dto\Partner\CreatePartnerDTO;
 use App\Domain\Entity\PartnerEntity\Partner;
 use App\Domain\Repository\Partner\PartnerRepositoryInterface;
-use App\Domain\ValueObject\Point\PointVO;
 use CrEOF\Spatial\PHP\Types\Geometry\MultiPolygon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;

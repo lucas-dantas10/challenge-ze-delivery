@@ -19,8 +19,7 @@ class PartnerCreatePostAction
     public function __construct(
         private readonly PartnerServiceInterface $partnerService,
         private readonly SerializerInterface $serializer,
-    )
-    { }
+    ) { }
 
     public function __invoke(#[MapRequestPayload] CreatePartnerDTO $partner): JsonResponse
     {
