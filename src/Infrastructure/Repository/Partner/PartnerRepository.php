@@ -27,13 +27,13 @@ class PartnerRepository extends ServiceEntityRepository implements PartnerReposi
         $query = <<<QUERY
             SELECT 
                 nu_seq_id AS id,
-                des_trading_name AS tradingName,
-                des_owner_name AS ownerName,
-                des_document AS document,
-                st_asgeojson(mp_coverage_area) AS coverageArea,
-                st_asgeojson(pt_address) AS address,
-                dt_created_at AS createdAt,
-                dt_updated_at AS updatedAt
+                des_trading_name AS "tradingName",
+                des_owner_name AS "ownerName",
+                des_document AS "document",
+                st_asgeojson(mp_coverage_area) AS "coverageArea",
+                st_asgeojson(pt_address) AS "address",
+                dt_created_at AS "createdAt",
+                dt_updated_at AS "updatedAt"
             FROM partners.s_partner
             WHERE nu_seq_id = :partnerId;
         QUERY;
